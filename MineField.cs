@@ -6,7 +6,7 @@ using System.Text;
 namespace Mini
 {
 
-    class Дъска
+    class MineField
     {
         private const int SizeX = 5;
         private const int SizeY = 10;
@@ -18,7 +18,7 @@ namespace Mini
         private int[,] numberOfNeighbourMines;
         internal int RevealedCells { get; set; }
     
-        public Дъска()
+        public MineField()
         {
             display = new char[SizeX, SizeY];
             hasMine = new bool[SizeX, SizeY];

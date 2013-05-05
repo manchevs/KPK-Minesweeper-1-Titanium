@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Mini
 {
-    internal static class Команда
+    internal static class Commands
     {
         internal static int x { get; set; }
         internal static int y { get; set; }

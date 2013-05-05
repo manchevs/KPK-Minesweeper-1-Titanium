@@ -5,12 +5,12 @@ using System.Text;
 
 namespace Mini
 {
-    class Табло
+    class Board
     {
-        private List<Човек> participants;
-        public Табло()
+        private List<Human> participants;
+        public Board()
         {
-            participants = new List<Човек>();
+            participants = new List<Human>();
         }
         internal int MinInTop5()
         {
@@ -22,8 +22,8 @@ namespace Mini
         {
             Console.Write("Please enter your name for the top scoreboard: ");
             string name = Console.ReadLine();
-            participants.Add(new Човек(name, score));
-            participants.Sort(new Comparison<Човек>(  (p1, p2) => p2.Score.CompareTo(p1.Score)));
+            participants.Add(new Human(name, score));
+            participants.Sort(new Comparison<Human>(  (p1, p2) => p2.Score.CompareTo(p1.Score)));
             participants = participants.Take(5).ToList();
         }
         internal void Покажи()

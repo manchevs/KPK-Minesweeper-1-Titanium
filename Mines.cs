@@ -10,15 +10,15 @@ namespace Mini
 
 	// Аз съм българче и пиша на БЪЛГАРСКИ!
 
-    class Програма
+    class Mines
     {
         static void Main()
         {
 
-            Табло scoreboard = new Табло();
+            Board scoreboard = new Board();
             ДайНаново:
             bool displayBoard = true;
-            Дъска board = new Дъска();
+            MineField board = new MineField();
             Console.WriteLine("Welcome to the game “Minesweeper”. Try to reveal all cells without mines. Use 'top' to view the scoreboard, 'restart' to start a new game and 'exit' to quit the game.");
             Console.WriteLine();
 
@@ -28,30 +28,30 @@ namespace Mini
                     board.Display();
                 displayBoard = true;
                 Console.Write("Enter row and column: ");
-                Команда.Прочети();
+                Commands.Прочети();
 
-                if (!Команда.NeMojesh)
+                if (!Commands.NeMojesh)
                 {
-                    if (Команда.IsGetStatistic)
+                    if (Commands.IsGetStatistic)
                     {
                         scoreboard.Покажи();
                         displayBoard = false;
-                        Команда.Clear();
+                        Commands.Clear();
                         continue;
                     }
-                    if (Команда.Izlez)
+                    if (Commands.Izlez)
                     {
                         Console.WriteLine("Goodbye!");
                         Environment.Exit(0);
                     }
-                    if (Команда.Nanovo)
+                    if (Commands.Nanovo)
                     {//ako iskahs pak skakash neznaino kyde
                         // ama pyk si bachka
                         goto ДайНаново;
                     }
 
-                    int x = Команда.x;
-                    int y = Команда.y;
+                    int x = Commands.x;
+                    int y = Commands.y;
                     if (!board.proverka(x, y) || board.proverka2(x, y))
                     {
                         Console.WriteLine("Illegal move!");
