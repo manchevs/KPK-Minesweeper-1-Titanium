@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Mini
+namespace Mines
 {
 
     class MineField
@@ -17,7 +17,7 @@ namespace Mini
         private bool[,] shown;
         private int[,] numberOfNeighbourMines;
         internal int RevealedCells { get; set; }
-    
+
         public MineField()
         {
             display = new char[SizeX, SizeY];
@@ -35,7 +35,7 @@ namespace Mini
             int actualNumberOfMines = 0;
             while (actualNumberOfMines < numberOfMines)
             {
-                if(PlaceMine(generator.Next(SizeX), generator.Next(SizeY)))
+                if (PlaceMine(generator.Next(SizeX), generator.Next(SizeY)))
                     actualNumberOfMines++;
             }
         }
@@ -78,7 +78,7 @@ namespace Mini
             Console.WriteLine();
             for (int i = 0; i < 4; i++)
                 Console.Write(" ");
-            for (int i = 0; i < 2*SizeY; i++)
+            for (int i = 0; i < 2 * SizeY; i++)
                 Console.Write('-');
             Console.WriteLine();
             for (int i = 0; i < SizeX; i++)
@@ -107,7 +107,7 @@ namespace Mini
             shown[x, y] = true;
             if (display[x, y] == '0')
             {
-                for(int xx = -1; xx <= 1; xx++)
+                for (int xx = -1; xx <= 1; xx++)
                     for (int yy = -1; yy <= 1; yy++)
                     {
                         int newX = x + xx;

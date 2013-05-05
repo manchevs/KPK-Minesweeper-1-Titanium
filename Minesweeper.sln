@@ -1,7 +1,7 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Minesweeper", "Minesweeper.csproj", "{E1502FC2-A30F-4A16-A67C-D75F7A1E7602}"
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mines", "Mines.csproj", "{E1502FC2-A30F-4A16-A67C-D75F7A1E7602}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

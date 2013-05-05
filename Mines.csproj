@@ -44,11 +44,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Дъска.cs" />
-    <Compile Include="Команда.cs" />
-    <Compile Include="Човек.cs" />
-    <Compile Include="Програма.cs" />
-    <Compile Include="Табло.cs" />
+    <Compile Include="MineField.cs" />
+    <Compile Include="Commands.cs" />
+    <Compile Include="Human.cs" />
+    <Compile Include="MinesweeperGame.cs" />
+    <Compile Include="Board.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />

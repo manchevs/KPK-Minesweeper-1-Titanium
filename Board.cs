@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Mini
+namespace Mines
 {
     class Board
     {
@@ -23,7 +23,7 @@ namespace Mini
             Console.Write("Please enter your name for the top scoreboard: ");
             string name = Console.ReadLine();
             participants.Add(new Human(name, score));
-            participants.Sort(new Comparison<Human>(  (p1, p2) => p2.Score.CompareTo(p1.Score)));
+            participants.Sort(new Comparison<Human>((p1, p2) => p2.Score.CompareTo(p1.Score)));
             participants = participants.Take(5).ToList();
         }
         internal void Покажи()

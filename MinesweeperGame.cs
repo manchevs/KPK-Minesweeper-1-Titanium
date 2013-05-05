@@ -5,18 +5,18 @@ using System.Text;
 using System.Diagnostics;
 using System.Windows.Forms;
 
-namespace Mini
+namespace Mines
 {
 
-	// Аз съм българче и пиша на БЪЛГАРСКИ!
+    // Аз съм българче и пиша на БЪЛГАРСКИ!
 
-    class Mines
+    class MinesweeperGame
     {
         static void Main()
         {
 
             Board scoreboard = new Board();
-            ДайНаново:
+        ДайНаново:
             bool displayBoard = true;
             MineField board = new MineField();
             Console.WriteLine("Welcome to the game “Minesweeper”. Try to reveal all cells without mines. Use 'top' to view the scoreboard, 'restart' to start a new game and 'exit' to quit the game.");
