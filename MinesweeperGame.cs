@@ -28,30 +28,30 @@ namespace Mines
                     board.Display();
                 displayBoard = true;
                 Console.Write("Enter row and column: ");
-                Commands.Прочети();
+                Commands.ReadCommand();
 
-                if (!Commands.NeMojesh)
+                if (Commands.ValidCommand)
                 {
-                    if (Commands.IsGetStatistic)
+                    if (Commands.GetStatistic)
                     {
                         scoreboard.Покажи();
                         displayBoard = false;
-                        Commands.Clear();
+                        Commands.CommandsInitialization();
                         continue;
                     }
-                    if (Commands.Izlez)
+                    if (Commands.Exit)
                     {
                         Console.WriteLine("Goodbye!");
                         Environment.Exit(0);
                     }
-                    if (Commands.Nanovo)
+                    if (Commands.Restart)
                     {//ako iskahs pak skakash neznaino kyde
                         // ama pyk si bachka
                         goto ДайНаново;
                     }
 
-                    int x = Commands.x;
-                    int y = Commands.y;
+                    int x = Commands.X;
+                    int y = Commands.Y;
                     if (!board.proverka(x, y) || board.proverka2(x, y))
                     {
                         Console.WriteLine("Illegal move!");

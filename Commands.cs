@@ -7,71 +7,68 @@ namespace Mines
 {
     internal static class Commands
     {
-        internal static int x { get; set; }
-        internal static int y { get; set; }
-        internal static bool Izlez;
+        internal static int X { get; set; }
+        internal static int Y { get; set; }
+        internal static bool Exit;
+        internal static bool GetStatistic;
+        internal static bool ValidCommand;
+        internal static bool Restart;
 
-
-        internal static bool IsGetStatistic;
-        internal static bool NeMojesh;
-        internal static bool Nanovo;
-
-        internal static void Прочети()
+        internal static void ReadCommand()
         {
-            Clear();
+            CommandsInitialization();
+
             string command = Console.ReadLine();
             command = command.Trim();
-            if (command == "exit")
-            {
-                Izlez = true;
-                return;
+            command = command.ToLower();
 
-
-            }
-            if (command == "top")
+            switch (command)
             {
-                IsGetStatistic = true;
-                return;
+                case "exit":
+                    Exit = true;
+                    return;
+                case "top":
+                    GetStatistic = true;
+                    return;
+                case "restart":
+                    Restart = true;
+                    return;
+                default:
+                    NextMove(command);
+                    break;
             }
-            if (command == "restart")
-            {
-                Nanovo = true;
-                return;
-            }
+        }
 
-            string[] tochka = command.Split(' ');
-            if (tochka.Length != 2)
-                NeMojesh = true;
+        private static void NextMove(string command)
+        {
+            string[] nextPoint = command.Split(' ');
+
+            if (nextPoint.Length != 2)
+            {
+                ValidCommand = false;
+            }
             else
             {
                 try
                 {
-                    x = Convert.ToInt32(tochka[0]);
-                    y = Convert.ToInt32(tochka[1]);
+                    X = Convert.ToInt32(nextPoint[0]);
+                    Y = Convert.ToInt32(nextPoint[1]);
                 }
                 catch (FormatException)
                 {
-                    //opa grymna...
-
-                    NeMojesh = true;
+                    ValidCommand = false;
                 }
-
-
             }
         }
 
-        internal static void Clear()
+        internal static void CommandsInitialization()
         {
-            x = 0;
-            y = 0;
-            Izlez = false;
-            IsGetStatistic = false;
-            NeMojesh = false;
-            Nanovo = false;
-
-
+            X = 0;
+            Y = 0;
+            Exit = false;
+            GetStatistic = false;
+            ValidCommand = true;
+            Restart = false;
         }
-
-
     }
 }
