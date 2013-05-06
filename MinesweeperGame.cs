@@ -25,7 +25,7 @@ namespace Mines
             while (true)
             {
                 if (displayBoard)
-                    board.Display();
+                    board.Initialize();
                 displayBoard = true;
                 Console.Write("Enter row and column: ");
                 Commands.ReadCommand();
@@ -52,7 +52,7 @@ namespace Mines
 
                     int x = Commands.X;
                     int y = Commands.Y;
-                    if (!board.proverka(x, y) || board.proverka2(x, y))
+                    if (!board.IsInsideTheField(x, y) || board.IsAlreadyShown(x, y))
                     {
                         Console.WriteLine("Illegal move!");
                         Console.WriteLine();
@@ -60,15 +60,15 @@ namespace Mines
                     }
                     else
                     {
-                        if (board.proverka3(x, y))
+                        if (board.IsMine(x, y))
                         {
-                            board.Край(x, y);
-                            board.Display();
-                            Console.WriteLine("Booooom! You were killed by a mine. You revealed " + board.RevealedCells + " cells without mines.");
+                            board.DisplayAllMines(x, y);
+                            board.Initialize();
+                            Console.WriteLine("Booooom! You were killed by a mine. You revealed " + board.RevealedCellsCounter + " cells without mines.");
                             Console.WriteLine();
-                            if (board.RevealedCells > scoreboard.MinInTop5() || scoreboard.Count() < 5)
+                            if (board.RevealedCellsCounter > scoreboard.MinInTop5() || scoreboard.Count() < 5)
                             {
-                                scoreboard.Dobavi(board.RevealedCells);
+                                scoreboard.Dobavi(board.RevealedCellsCounter);
                             }
                             scoreboard.Покажи();
                             goto ДайНаново;
@@ -84,8 +84,5 @@ namespace Mines
                 }
             }
         }
-
-        //ai na bas che ne mojehs da napishesh pove4e kod v edin metod!
-
     }
 }

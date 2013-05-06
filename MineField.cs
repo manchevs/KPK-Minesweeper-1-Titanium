@@ -1,110 +1,140 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 
 namespace Mines
 {
-
-    class MineField
+    public class MineField
     {
         private const int SizeX = 5;
         private const int SizeY = 10;
-        private const int numberOfMines = 15;
+        private const int NumberOfMines = 15;
 
         private char[,] display;
         private bool[,] hasMine;
-        private bool[,] shown;
+        private bool[,] isShown;
         private int[,] numberOfNeighbourMines;
-        internal int RevealedCells { get; set; }
+
+        internal int RevealedCellsCounter { get; set; }
 
         public MineField()
         {
-            display = new char[SizeX, SizeY];
-            hasMine = new bool[SizeX, SizeY];
-            shown = new bool[SizeX, SizeY];
-            numberOfNeighbourMines = new int[SizeX, SizeY];
+            this.display = new char[SizeX, SizeY];
+            this.hasMine = new bool[SizeX, SizeY];
+            this.isShown = new bool[SizeX, SizeY];
+            this.numberOfNeighbourMines = new int[SizeX, SizeY];
             InitializeBoardForDisplay();
-            PutMines();
+            InitializeMines();
         }
 
-        private void PutMines()
+        private void InitializeMines()
         {
             Random generator = new Random();
 
-            int actualNumberOfMines = 0;
-            while (actualNumberOfMines < numberOfMines)
+            int placedMines = 0;
+            while (placedMines < NumberOfMines)
             {
                 if (PlaceMine(generator.Next(SizeX), generator.Next(SizeY)))
-                    actualNumberOfMines++;
+                {
+                    placedMines++;
+                }
             }
-        }
-
-        internal bool proverka(int x, int y)
-        {
-            return 0 <= x && x < SizeX && 0 <= y && y < SizeY;
         }
 
         private bool PlaceMine(int x, int y)
         {
-            if (proverka(x, y) && !hasMine[x, y])
+            if (IsInsideTheField(x, y) && !hasMine[x, y])
             {
                 hasMine[x, y] = true;
-                for (int xx = -1; xx <= 1; xx++)
-                    for (int yy = -1; yy <= 1; yy++)
-                    {
-                        if (((xx != 0) || (yy != 0)) && proverka(x + xx, y + yy))
-                            numberOfNeighbourMines[x + xx, y + yy]++;
-                    }
+                ActualizeNeighbours(x, y);
+
                 return true;
             }
+
             return false;
+        }
+
+        public bool IsInsideTheField(int x, int y)
+        {
+            bool isInsideHorizontaly = 0 <= x && x < SizeX;
+            bool isInsideVerticaly = 0 <= y && y < SizeY;
+            return isInsideHorizontaly && isInsideVerticaly;
+        }
+
+        public bool IsAlreadyShown(int x, int y)
+        {
+            return isShown[x, y];
+        }
+
+        public bool IsMine(int x, int y)
+        {
+            return hasMine[x, y];
+        }
+
+        private void ActualizeNeighbours(int x, int y)
+        {
+            for (int i = -1; i <= 1; i++)
+            {
+                for (int j = -1; j <= 1; j++)
+                {
+                    if (((i != 0) || (j != 0)) && IsInsideTheField(x + i, y + j))
+                    {
+                        numberOfNeighbourMines[x + i, y + j]++;
+                    }
+                }
+            }
         }
 
         private void InitializeBoardForDisplay()
         {
             for (int i = 0; i < SizeX; i++)
+            {
                 for (int j = 0; j < SizeY; j++)
+                {
                     display[i, j] = '?';
+                }
+            }
         }
 
-        internal void Display()
+        public void Initialize()
         {
-
-            for (int i = 0; i < 4; i++)
-                Console.Write(" ");
+            StringBuilder initialText = new StringBuilder();
+            initialText.Append(new String(' ', 4));
             for (int i = 0; i < SizeY; i++)
-                Console.Write(i + " ");
-            Console.WriteLine();
-            for (int i = 0; i < 4; i++)
-                Console.Write(" ");
-            for (int i = 0; i < 2 * SizeY; i++)
-                Console.Write('-');
-            Console.WriteLine();
+            {
+                initialText.Append(i);
+                initialText.Append(' ');
+            }
+
+            initialText.Append(Environment.NewLine);
+            initialText.Append(new String(' ', 4));
+            initialText.Append(new String('-', 2 * SizeY));
+            initialText.Append(Environment.NewLine);
             for (int i = 0; i < SizeX; i++)
             {
-                Console.Write(i + " | ");
+                initialText.Append(i);
+                initialText.Append(" | ");
                 for (int j = 0; j < SizeY; j++)
-                    Console.Write(display[i, j] + " ");
-                Console.WriteLine("|");
+                {
+                    initialText.Append(display[i, j]);
+                    initialText.Append(' ');
+                }
+
+                initialText.Append('|');
+                initialText.Append(Environment.NewLine);
             }
-            for (int i = 0; i < 4; i++)
-                Console.Write(" ");
-            for (int i = 0; i < 2 * SizeY; i++)
-                Console.Write("-");
-            Console.WriteLine();
+
+            initialText.Append(new String(' ', 4));
+            initialText.Append(new String('-', 2 * SizeY));
+
+            Console.WriteLine(initialText);
         }
 
-        internal bool proverka3(int x, int y)
-        {
-            return hasMine[x, y];
-        }
-
-        internal void RevealBlock(int x, int y)
+        
+        public void RevealBlock(int x, int y)
         {
             display[x, y] = Convert.ToChar(numberOfNeighbourMines[x, y].ToString());
-            RevealedCells++;
-            shown[x, y] = true;
+            RevealedCellsCounter++;
+            isShown[x, y] = true;
             if (display[x, y] == '0')
             {
                 for (int xx = -1; xx <= 1; xx++)
@@ -112,27 +142,28 @@ namespace Mines
                     {
                         int newX = x + xx;
                         int newY = y + yy;
-                        if (proverka(newX, newY) && shown[newX, newY] == false)
+                        if (IsInsideTheField(newX, newY) && isShown[newX, newY] == false)
                             RevealBlock(newX, newY);
                     }
             }
         }
 
-        internal void Край(int x, int y)
+        public void DisplayAllMines(int x, int y)
         {
             for (int i = 0; i < SizeX; i++)
+            {
                 for (int j = 0; j < SizeY; j++)
                 {
-                    if (!shown[i, j])
+                    if (!isShown[i, j])
+                    {
                         display[i, j] = '-';
+                    }
                     if (hasMine[i, j])
+                    {
                         display[i, j] = '*';
+                    }
                 }
-        }
-
-        internal bool proverka2(int x, int y)
-        {
-            return shown[x, y];
+            }
         }
     }
 }
