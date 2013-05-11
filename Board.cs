@@ -8,17 +8,23 @@ namespace Mines
     class Board
     {
         private List<Human> participants;
+
         public Board()
         {
             participants = new List<Human>();
         }
+
         internal int MinInTop5()
         {
             if (participants.Count > 0)
+            {
                 return participants.Last().Score;
+            }
+
             return -1;
         }
-        internal void Dobavi(int score)
+
+        internal void AddScore(int score)
         {
             Console.Write("Please enter your name for the top scoreboard: ");
             string name = Console.ReadLine();
@@ -26,7 +32,8 @@ namespace Mines
             participants.Sort(new Comparison<Human>((p1, p2) => p2.Score.CompareTo(p1.Score)));
             participants = participants.Take(5).ToList();
         }
-        internal void Покажи()
+
+        internal void ShowScore()
         {
             Console.WriteLine("Scoreboard:");
             foreach (var p in participants)
@@ -35,6 +42,7 @@ namespace Mines
             }
             Console.WriteLine();
         }
+
         internal int Count()
         {
             return participants.Count();

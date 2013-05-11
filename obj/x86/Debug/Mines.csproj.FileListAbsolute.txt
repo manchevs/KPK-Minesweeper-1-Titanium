@@ -8,3 +8,5 @@ C:\Users\FeRt1\Desktop\MinesweeperTeamWorkProject\KPK-Minesweeper-1-Titanium\obj
 C:\Users\FeRt1\Desktop\MinesweeperTeamWorkProject\KPK-Minesweeper-1-Titanium\bin\Debug\Minesweeper.exe
 C:\Users\FeRt1\Desktop\MinesweeperTeamWorkProject\KPK-Minesweeper-1-Titanium\bin\Debug\Minesweeper.pdb
 C:\Users\FeRt1\Desktop\MinesweeperTeamWorkProject\KPK-Minesweeper-1-Titanium\obj\x86\Debug\Mines.csprojResolveAssemblyReference.cache
+D:\Projects\Telerik Academy\HQC\HQC Projects\Teamwork  Titanium\KPK-Minesweeper-1-Titanium\obj\x86\Debug\Minesweeper.exe
+D:\Projects\Telerik Academy\HQC\HQC Projects\Teamwork  Titanium\KPK-Minesweeper-1-Titanium\obj\x86\Debug\Minesweeper.pdb

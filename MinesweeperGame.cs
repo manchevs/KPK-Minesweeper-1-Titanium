@@ -34,7 +34,7 @@ namespace Mines
                 {
                     if (Commands.GetStatistic)
                     {
-                        scoreboard.Покажи();
+                        scoreboard.ShowScore();
                         displayBoard = false;
                         Commands.CommandsInitialization();
                         continue;
@@ -68,9 +68,9 @@ namespace Mines
                             Console.WriteLine();
                             if (board.RevealedCellsCounter > scoreboard.MinInTop5() || scoreboard.Count() < 5)
                             {
-                                scoreboard.Dobavi(board.RevealedCellsCounter);
+                                scoreboard.AddScore(board.RevealedCellsCounter);
                             }
-                            scoreboard.Покажи();
+                            scoreboard.ShowScore();
                             goto ДайНаново;
                         }
                         else
