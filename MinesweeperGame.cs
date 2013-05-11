@@ -1,87 +1,97 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Diagnostics;
-using System.Windows.Forms;
 
 namespace Mines
 {
-
-    // Аз съм българче и пиша на БЪЛГАРСКИ!
-
-    class MinesweeperGame
+    public class MinesweeperGame
     {
-        static void Main()
+        public static void Main()
         {
-
-            Board scoreboard = new Board();
-        ДайНаново:
-            bool displayBoard = true;
+            Board scoreBoard = new Board();
             MineField board = new MineField();
             Console.WriteLine("Welcome to the game “Minesweeper”. Try to reveal all cells without mines. Use 'top' to view the scoreboard, 'restart' to start a new game and 'exit' to quit the game.");
             Console.WriteLine();
 
             while (true)
             {
-                if (displayBoard)
-                    board.Initialize();
-                displayBoard = true;
-                Console.Write("Enter row and column: ");
-                Commands.ReadCommand();
-
-                if (Commands.ValidCommand)
+                if (board.ShouldDisplayBoard)
                 {
-                    if (Commands.GetStatistic)
+                    Console.WriteLine(board.ToString());
+                }
+                
+                board.ShouldDisplayBoard = true;
+                Console.Write("Enter row and column: ");
+
+                ExecuteCommand(board, scoreBoard);
+            }
+        }
+
+        private static void ExecuteCommand(MineField board, Board scoreBoard)
+        {
+            Commands.ReadCommand();
+
+            if (Commands.ValidCommand)
+            {
+                ExecuteSpecialCommand(board, scoreBoard);
+
+                ExecuteRevealBlockCommand(board, scoreBoard);
+            }
+            else
+            {
+                Console.WriteLine("Illegal command!");
+                board.ShouldDisplayBoard = false;
+            }
+        }
+  
+        private static void ExecuteRevealBlockCommand(MineField board, Board scoreBoard)
+        {
+            int x = Commands.X;
+            int y = Commands.Y;
+
+            if (!board.IsInsideTheField(x, y) || board.IsAlreadyShown(x, y))
+            {
+                Console.WriteLine("Illegal move!");
+                Console.WriteLine();
+                board.ShouldDisplayBoard = false;
+            }
+            else
+            {
+                if (board.IsMine(x, y))
+                {
+                    board.RevealAllMines();
+                    Console.WriteLine(board.ToString());
+                    Console.WriteLine("Booooom! You were killed by a mine. You revealed {0} cells without mines.", board.RevealedCellsCounter);
+                    Console.WriteLine();
+                    if (scoreBoard.Count() < 5 || board.RevealedCellsCounter > scoreBoard.MinInTop5())
                     {
-                        scoreboard.ShowScore();
-                        displayBoard = false;
-                        Commands.CommandsInitialization();
-                        continue;
-                    }
-                    if (Commands.Exit)
-                    {
-                        Console.WriteLine("Goodbye!");
-                        Environment.Exit(0);
-                    }
-                    if (Commands.Restart)
-                    {//ako iskahs pak skakash neznaino kyde
-                        // ama pyk si bachka
-                        goto ДайНаново;
+                        scoreBoard.AddScore(board.RevealedCellsCounter);
                     }
 
-                    int x = Commands.X;
-                    int y = Commands.Y;
-                    if (!board.IsInsideTheField(x, y) || board.IsAlreadyShown(x, y))
-                    {
-                        Console.WriteLine("Illegal move!");
-                        Console.WriteLine();
-                        displayBoard = false;
-                    }
-                    else
-                    {
-                        if (board.IsMine(x, y))
-                        {
-                            board.DisplayAllMines(x, y);
-                            board.Initialize();
-                            Console.WriteLine("Booooom! You were killed by a mine. You revealed " + board.RevealedCellsCounter + " cells without mines.");
-                            Console.WriteLine();
-                            if (board.RevealedCellsCounter > scoreboard.MinInTop5() || scoreboard.Count() < 5)
-                            {
-                                scoreboard.AddScore(board.RevealedCellsCounter);
-                            }
-                            scoreboard.ShowScore();
-                            goto ДайНаново;
-                        }
-                        else
-                            board.RevealBlock(x, y);
-                    }
+                    scoreBoard.ShowScore();
+                    Main();
                 }
                 else
                 {
-                    Console.WriteLine("Illegal command!");
-                    displayBoard = false;
+                    board.RevealBlock(x, y);
                 }
+            }
+        }
+  
+        private static void ExecuteSpecialCommand(MineField board, Board scoreBoard)
+        {
+            if (Commands.GetStatistic)
+            {
+                scoreBoard.ShowScore();
+                board.ShouldDisplayBoard = false;
+                Commands.CommandsInitialization();
+            }
+            else if (Commands.Exit)
+            {
+                Console.WriteLine("Goodbye!");
+                Environment.Exit(0);
+            }
+            else if (Commands.Restart)
+            {
+                Main();
             }
         }
     }

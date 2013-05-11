@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AllBoards.cs" />
     <Compile Include="MineField.cs" />
     <Compile Include="Commands.cs" />
     <Compile Include="Human.cs" />
