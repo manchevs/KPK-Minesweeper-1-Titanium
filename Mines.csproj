@@ -48,7 +48,7 @@
     <Compile Include="GameMessages.cs" />
     <Compile Include="MineField.cs" />
     <Compile Include="Commands.cs" />
-    <Compile Include="Human.cs" />
+    <Compile Include="Player.cs" />
     <Compile Include="MinesweeperGame.cs" />
     <Compile Include="Board.cs" />
   </ItemGroup>
