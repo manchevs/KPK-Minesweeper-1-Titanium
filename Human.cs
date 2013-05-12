@@ -19,6 +19,7 @@ namespace Mines
         public string Name
         {
             get { return this.name; }
+			
             set
             {
                 if (string.IsNullOrWhiteSpace(value))
