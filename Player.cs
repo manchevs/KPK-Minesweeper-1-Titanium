@@ -5,12 +5,12 @@ using System.Text;
 
 namespace Mines
 {
-    class Human
+    class Player
     {
         private string name;
         private int score;
 
-        public Human(string name, int score)
+        public Player(string name, int score)
         {
             this.Name = name;
             this.Score = score;

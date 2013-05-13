@@ -7,18 +7,18 @@ namespace Mines
 {
     class Board
     {
-        private List<Human> participants;
+        private List<Player> players;
 
         public Board()
         {
-            participants = new List<Human>();
+            players = new List<Player>();
         }
 
         internal int MinInTop5()
         {
-            if (participants.Count > 0)
+            if (players.Count > 0)
             {
-                return participants.Last().Score;
+                return players.Last().Score;
             }
 
             return -1;
@@ -28,24 +28,24 @@ namespace Mines
         {
             Console.Write("Please enter your name for the top scoreboard: ");
             string name = Console.ReadLine();
-            participants.Add(new Human(name, score));
-            participants.Sort(new Comparison<Human>((p1, p2) => p2.Score.CompareTo(p1.Score)));
-            participants = participants.Take(5).ToList();
+            players.Add(new Player(name, score));
+            players.Sort(new Comparison<Player>((p1, p2) => p2.Score.CompareTo(p1.Score)));
+            players = players.Take(5).ToList();
         }
 
         internal void ShowScore()
         {
             Console.WriteLine("Scoreboard:");
-            foreach (var p in participants)
+            foreach (var p in players)
             {
-                Console.WriteLine(participants.IndexOf(p) + 1 + ". " + p.Name + " --> " + p.Score + " cells");
+                Console.WriteLine(players.IndexOf(p) + 1 + ". " + p.Name + " --> " + p.Score + " cells");
             }
             Console.WriteLine();
         }
 
         internal int Count()
         {
-            return participants.Count();
+            return players.Count();
         }
     }
 }
