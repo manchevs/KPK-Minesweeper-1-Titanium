@@ -35,6 +35,7 @@ namespace Mines
 
         public static void EndGame(int revealedCells)
         {
+            Console.WriteLine("\n\nGAME OVER\n\n");
             Console.WriteLine("Booooom! You were killed by a mine. You revealed {0} cells without mines.", revealedCells);
             Console.WriteLine();
         }

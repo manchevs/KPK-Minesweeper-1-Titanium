@@ -5,60 +5,65 @@ namespace Mines
     public class MinesweeperGame
     {
         private static readonly Board scoreBoard = new Board();
+        private static bool shouldDisplayBoard = true;
 
         public static void Main()
         {
             MineField mineField = new MineField();
-            GameMessages.StartGame();
+            
 
             while (true)
             {
-                if (mineField.ShouldDisplayBoard)
+                if (shouldDisplayBoard)
                 {
+                    Console.Clear();
+                    GameMessages.StartGame();
                     GameMessages.DrawGameField(mineField.ToString());
                 }
 
-                mineField.ShouldDisplayBoard = true;
+                shouldDisplayBoard = true;
                 GameMessages.Entry();
 
-                ExecuteCommand(mineField, scoreBoard);
+                ExecuteCommand(mineField);
             }
         }
 
-        private static void ExecuteCommand(MineField mineField, Board scoreBoard)
+        private static void ExecuteCommand(MineField mineField)
         {
-            Commands.ReadCommand();
+            CommandParser commandParser = new CommandParser();
+            bool parsedCommand = commandParser.TryReadCommand();
 
-            if (Commands.ValidCommand)
+            if (parsedCommand)
             {
-                if (Commands.IsSpecialCommand())
+                if (commandParser.IsSpecialCommand())
                 {
-                    ExecuteSpecialCommand(mineField, scoreBoard);
+                    ExecuteSpecialCommand(mineField, commandParser);
                 }
                 else
                 {
-                    ExecuteRevealBlockCommand(mineField, scoreBoard);
+                    ExecuteRevealBlockCommand(mineField, commandParser.CurrentCell);
                 }
             }
             else
             {
                 GameMessages.IlligalCommand();
-                mineField.ShouldDisplayBoard = false;
+                shouldDisplayBoard = false;
             }
         }
 
-        private static void ExecuteRevealBlockCommand(MineField mineField, Board scoreBoard)
+        private static void ExecuteRevealBlockCommand(MineField mineField, Cell currentCell)
         {
-            int x = Commands.X;
-            int y = Commands.Y;
+            int row = currentCell.Row;
+            int col = currentCell.Col;
 
-            if (mineField.IsInsideTheField(x, y) && !mineField.IsAlreadyShown(x, y))
+            if (mineField.IsInsideTheField(row, col) && !mineField.IsAlreadyShown(row, col))
             {
-                if (mineField.IsMine(x, y))
+                if (mineField.IsMine(row, col))
                 {
                     mineField.RevealAllMines();
-                    GameMessages.DrawGameField(mineField.ToString());
+                    Console.Clear();
                     GameMessages.EndGame(mineField.RevealedCellsCounter);
+                    GameMessages.DrawGameField(mineField.ToString());
                     if (scoreBoard.Count() < 5 || mineField.RevealedCellsCounter > scoreBoard.MinInTop5())
                     {
                         scoreBoard.AddScore(mineField.RevealedCellsCounter);
@@ -69,52 +74,56 @@ namespace Mines
                 }
                 else
                 {
-                    mineField.RevealBlock(x, y);
+                    mineField.RevealBlock(row, col);
                 }
             }
             else
             {
                 GameMessages.IlligalMove();
-                mineField.ShouldDisplayBoard = false;
+                shouldDisplayBoard = false;
             }
         }
 
-        private static void ExecuteSpecialCommand(MineField mineField, Board scoreBoard)
+        private static void ExecuteSpecialCommand(MineField mineField, CommandParser commandParser)
         {
-            if (Commands.GetStatistic)
+            if (commandParser.Command == "top")
             {
                 scoreBoard.ShowScore();
-                mineField.ShouldDisplayBoard = false;
-                Commands.CommandsInitialization();
+                shouldDisplayBoard = false;
             }
-            else if (Commands.Exit)
+            else if (commandParser.Command == "exit")
             {
                 GameMessages.Exit();
                 Environment.Exit(0);
             }
-            else if (Commands.Restart)
+            else if (commandParser.Command == "restart")
             {
                 Main();
             }
-            else if (Commands.Flag)
+            else if (commandParser.Command == "flag")
             {
-                ExecuteFlagCommand(mineField);
+                ExecuteFlagCommand(mineField, commandParser.CurrentCell);
+            }
+            else
+            {
+                GameMessages.IlligalCommand();
+                shouldDisplayBoard = false;
             }
         }
 
-        private static void ExecuteFlagCommand(MineField mineField)
+        private static void ExecuteFlagCommand(MineField mineField, Cell currentCell)
         {
-            int x = Commands.X;
-            int y = Commands.Y;
+            int row = currentCell.Row;
+            int col = currentCell.Col;
 
-            if (mineField.IsInsideTheField(x, y) && !mineField.IsAlreadyShown(x, y))
+            if (mineField.IsInsideTheField(row, col) && !mineField.IsAlreadyShown(row, col))
             {
-                mineField.AddRemoveFlag(x, y);
+                mineField.AddRemoveFlag(row, col);
             }
             else
             {
                 GameMessages.IlligalMove();
-                mineField.ShouldDisplayBoard = false;
+                shouldDisplayBoard = false;
             }
         }
 

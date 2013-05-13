@@ -34,10 +34,7 @@ namespace Mines
         /// </summary>
         private int revealedCellsCounter;
 
-        /// <summary>
-        /// The display state of the mine field.
-        /// </summary>
-        private bool shouldDisplayBoard;
+        private int expectedMinesLeft;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MineField"/> class
@@ -62,8 +59,7 @@ namespace Mines
             this.height = height;
             this.numberOfMines = numberOfMines;
             this.boards = new Boards(height, width);
-
-            this.ShouldDisplayBoard = true;
+            this.expectedMinesLeft = numberOfMines;
 
             this.InitializeBoardForDisplay();
             this.InitializeMines();
@@ -82,22 +78,6 @@ namespace Mines
             private set
             {
                 this.revealedCellsCounter = value;
-            }
-        }
-
-        /// <summary>
-        /// Gets/Sets the display state of the game field.
-        /// </summary>
-        public bool ShouldDisplayBoard
-        {
-            get
-            {
-                return this.shouldDisplayBoard;
-            }
-
-            set
-            {
-                this.shouldDisplayBoard = value;
             }
         }
 
@@ -220,10 +200,19 @@ namespace Mines
         /// <param name="y">The Y coordinate of the cell</param>
         public void RevealBlock(int x, int y)
         {
-            this.boards.Visible[x, y] = Convert.ToChar(this.boards.NumberOfNeighbourMines[x, y].ToString());
+            char neighbourCells = Convert.ToChar(this.boards.NumberOfNeighbourMines[x, y].ToString());
+            if (neighbourCells == '0')
+            {
+                this.boards.Visible[x, y] = ' ';
+            }
+            else
+            {
+                this.boards.Visible[x, y] = neighbourCells;
+            }
+
             this.RevealedCellsCounter++;
             this.boards.IsShown[x, y] = true;
-            if (this.boards.Visible[x, y] == '0')
+            if (this.boards.Visible[x, y] == ' ')
             {
                 for (int row = -1; row <= 1; row++)
                 {
@@ -250,10 +239,12 @@ namespace Mines
             if (this.boards.Visible[x, y] == '?')
             {
                 this.boards.Visible[x, y] = '!';
+                this.expectedMinesLeft--;
             }
             else
             {
                 this.boards.Visible[x, y] = '?';
+                this.expectedMinesLeft++;
             }
         }
 
@@ -305,13 +296,13 @@ namespace Mines
             mineField.Append(new string(' ', 4));
             mineField.Append(new string('-', 2 * this.width));
             mineField.Append(Environment.NewLine);
-            for (int i = 0; i < this.height; i++)
+            for (int row = 0; row < this.height; row++)
             {
-                mineField.Append(i);
+                mineField.Append(row);
                 mineField.Append(" | ");
-                for (int j = 0; j < this.width; j++)
+                for (int col = 0; col < this.width; col++)
                 {
-                    mineField.Append(this.boards.Visible[i, j]);
+                    mineField.Append(this.boards.Visible[row, col]);
                     mineField.Append(' ');
                 }
 
@@ -321,6 +312,9 @@ namespace Mines
 
             mineField.Append(new string(' ', 4));
             mineField.Append(new string('-', 2 * this.width));
+            mineField.Append(new string(' ', 4));
+            mineField.Append("Mines left: ");
+            mineField.Append(this.expectedMinesLeft);
 
             return mineField.ToString();
         }

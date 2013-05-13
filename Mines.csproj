@@ -45,9 +45,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Boards.cs" />
+    <Compile Include="Cell.cs" />
     <Compile Include="GameMessages.cs" />
     <Compile Include="MineField.cs" />
-    <Compile Include="Commands.cs" />
+    <Compile Include="CommandParser.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="MinesweeperGame.cs" />
     <Compile Include="Board.cs" />
