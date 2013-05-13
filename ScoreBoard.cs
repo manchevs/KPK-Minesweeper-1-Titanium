@@ -1,27 +1,28 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace Mines
 {
-    class Board
+    class ScoreBoard
     {
         private List<Player> players;
 
-        public Board()
+        public ScoreBoard()
         {
             players = new List<Player>();
         }
 
-        internal int MinInTop5()
+        internal int MinimalScoreInTop5()
         {
             if (players.Count > 0)
             {
                 return players.Last().Score;
             }
-
-            return -1;
+            else
+            {
+                return -1;
+            }
         }
 
         internal void AddScore(int score)

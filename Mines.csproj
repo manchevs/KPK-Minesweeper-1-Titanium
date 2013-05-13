@@ -51,7 +51,7 @@
     <Compile Include="CommandParser.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="MinesweeperGame.cs" />
-    <Compile Include="Board.cs" />
+    <Compile Include="ScoreBoard.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />

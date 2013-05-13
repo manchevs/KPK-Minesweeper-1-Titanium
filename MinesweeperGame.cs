@@ -4,7 +4,7 @@ namespace Mines
 {
     public class MinesweeperGame
     {
-        private static readonly Board scoreBoard = new Board();
+        private static readonly ScoreBoard scoreBoard = new ScoreBoard();
         private static bool shouldDisplayBoard = true;
 
         public static void Main()
@@ -64,7 +64,8 @@ namespace Mines
                     Console.Clear();
                     GameMessages.EndGame(mineField.RevealedCellsCounter);
                     GameMessages.DrawGameField(mineField.ToString());
-                    if (scoreBoard.Count() < 5 || mineField.RevealedCellsCounter > scoreBoard.MinInTop5())
+                    bool isInTop5 = (mineField.RevealedCellsCounter > scoreBoard.MinimalScoreInTop5());
+                    if (scoreBoard.Count() < 5 || isInTop5)
                     {
                         scoreBoard.AddScore(mineField.RevealedCellsCounter);
                     }
