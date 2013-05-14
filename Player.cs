@@ -10,20 +10,8 @@ namespace Mines
 
         public Player(string name, int score)
         {
-            if (name == null)
-            {
-                throw new ArgumentNullException("Name cannot be null");
-            }
-            if (name == "")
-            {
-                throw new ArgumentException("Name cannot be empty string");
-            }
-             this.Name = name;
-            if (score < 0)
-            {
-                throw new ArgumentException("Score cannot be less than 0");
-            }
-             this.Score = score;
+            this.Name = name;
+            this.Score = score;
         }
 
         public string Name
@@ -38,9 +26,12 @@ namespace Mines
                 }
                 if (value == "")
                 {
-                    throw new ArgumentException("Player's name cannot be empty string");
+                    this.name = "unsign player";
                 }
-                this.name = value;
+                else
+                {
+                    this.name = value;
+                }
             }
         }
 
