@@ -11,7 +11,7 @@ namespace Mines
 
         public Boards(int height, int width)
         {
-            if (height < 0 || width < 0)
+            if (height <= 0 || width <= 0)
             {
                 throw new ArgumentException("Height and Width must be possitive numbers!");
             }
