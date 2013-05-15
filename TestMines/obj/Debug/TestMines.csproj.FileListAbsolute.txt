@@ -5,3 +5,10 @@ C:\Users\Ani\Documents\GitHub\KPK-Minesweeper-1-Titanium\TestMines\bin\Debug\Min
 C:\Users\Ani\Documents\GitHub\KPK-Minesweeper-1-Titanium\TestMines\obj\Debug\TestMines.csprojResolveAssemblyReference.cache
 C:\Users\Ani\Documents\GitHub\KPK-Minesweeper-1-Titanium\TestMines\obj\Debug\TestMines.dll
 C:\Users\Ani\Documents\GitHub\KPK-Minesweeper-1-Titanium\TestMines\obj\Debug\TestMines.pdb
+C:\Academy\CSharp-4-KPK\18_TeamWork -\Project\KPK-Minesweeper-1-Titanium\TestMines\bin\Debug\TestMines.dll
+C:\Academy\CSharp-4-KPK\18_TeamWork -\Project\KPK-Minesweeper-1-Titanium\TestMines\bin\Debug\TestMines.pdb
+C:\Academy\CSharp-4-KPK\18_TeamWork -\Project\KPK-Minesweeper-1-Titanium\TestMines\bin\Debug\Minesweeper.exe
+C:\Academy\CSharp-4-KPK\18_TeamWork -\Project\KPK-Minesweeper-1-Titanium\TestMines\bin\Debug\Minesweeper.pdb
+C:\Academy\CSharp-4-KPK\18_TeamWork -\Project\KPK-Minesweeper-1-Titanium\TestMines\obj\Debug\TestMines.csprojResolveAssemblyReference.cache
+C:\Academy\CSharp-4-KPK\18_TeamWork -\Project\KPK-Minesweeper-1-Titanium\TestMines\obj\Debug\TestMines.dll
+C:\Academy\CSharp-4-KPK\18_TeamWork -\Project\KPK-Minesweeper-1-Titanium\TestMines\obj\Debug\TestMines.pdb
