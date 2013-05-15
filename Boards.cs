@@ -2,6 +2,10 @@
 
 namespace Mines
 {
+    /// <summary>
+    /// Class for keeping information of each MineField Cell with the status
+    /// (is visibla, has mine, neighbours with mine, is shown.)
+    /// </summary>
     public class Boards
     {
         private readonly char[,] visible;

@@ -31,7 +31,8 @@ namespace Mines
         private static void ExecuteCommand(MineField mineField)
         {
             CommandParser commandParser = new CommandParser();
-            bool parsedCommand = commandParser.TryReadCommand();
+            string cmd = ReadCommand();
+            bool parsedCommand = commandParser.TryParseCommand(cmd);
 
             if (parsedCommand)
             {
@@ -49,6 +50,14 @@ namespace Mines
                 GameMessages.IlligalCommand();
                 shouldDisplayBoard = false;
             }
+        }
+
+        private static string ReadCommand()
+        {
+                string command = Console.ReadLine();
+                command = command.Trim();
+                command = command.ToLower();
+                return command;
         }
 
         private static void ExecuteRevealBlockCommand(MineField mineField, Cell currentCell)

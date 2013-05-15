@@ -3,11 +3,19 @@ using System.Linq;
 
 namespace Mines
 {
-   public class Player
+    /// <summary>
+    /// Players data - Name, Scores
+    /// </summary>
+    public class Player
     {
         private string name;
         private int score;
 
+        /// <summary>
+        /// Initialize the player
+        /// </summary>
+        /// <param name="name">Payer's name - string</param>
+        /// <param name="score">Player's score - integer </param>
         public Player(string name, int score)
         {
             this.Name = name;
@@ -37,13 +45,13 @@ namespace Mines
         public int Score
         {
             get { return this.score; }
-            set 
+            set
             {
-                if(value<0)
+                if (value < 0)
                 {
                     throw new ArgumentException("Score cannot be less than 0");
                 }
-                this.score = value; 
+                this.score = value;
             }
         }
     }
