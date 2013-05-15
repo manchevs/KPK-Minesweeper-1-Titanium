@@ -8,7 +8,7 @@
     <ProjectGuid>{E1502FC2-A30F-4A16-A67C-D75F7A1E7602}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Mini</RootNamespace>
+    <RootNamespace>Mines</RootNamespace>
     <AssemblyName>Minesweeper</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>

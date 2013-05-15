@@ -2,6 +2,10 @@
 
 namespace Mines
 {
+    /// <summary>
+    /// Class for keeping information of each MineField Cell with the status
+    /// (is visibla, has mine, neighbours with mine, is shown.)
+    /// </summary>
     public class Boards
     {
         private readonly char[,] visible;
@@ -11,7 +15,7 @@ namespace Mines
 
         public Boards(int height, int width)
         {
-            if (height < 0 || width < 0)
+            if (height <= 0 || width <= 0)
             {
                 throw new ArgumentException("Height and Width must be possitive numbers!");
             }

@@ -2,11 +2,17 @@
 
 namespace Mines
 {
+    /// <summary>
+    /// Check the command type and parse the next move coordinates
+    /// </summary>
     public class CommandParser
     {
         private Cell currentCell;
         private string command;
 
+        /// <summary>
+        /// Keeps the commant name
+        /// </summary>
         public string Command 
         {
             get
@@ -25,6 +31,9 @@ namespace Mines
             }
         }
 
+        /// <summary>
+        /// Keeps the current cell coordinats
+        /// </summary>
         public Cell CurrentCell
         {
             get
@@ -38,12 +47,13 @@ namespace Mines
             }
         }
 
-        public bool TryReadCommand()
+        /// <summary>
+        /// Check if it is a regular command
+        /// </summary>
+        /// <param name="command">Command name read</param>
+        /// <returns>True if regular command</returns>
+        public bool TryParseCommand(string command)
         {
-            string command = Console.ReadLine();
-            command = command.Trim();
-            command = command.ToLower();
-
             try
             {
                 if (command.StartsWith("flag") || Char.IsDigit(command[0]))
@@ -63,6 +73,10 @@ namespace Mines
             }
         }
 
+        /// <summary>
+        /// Check if it is a special command for top scores, end game, etc.
+        /// </summary>
+        /// <returns>True if special command</returns>
         public bool IsSpecialCommand()
         {
             if (Char.IsLetter(this.Command[0]))
@@ -75,6 +89,10 @@ namespace Mines
             }
         }
 
+        /// <summary>
+        /// Parse coordinats for the next move
+        /// </summary>
+        /// <param name="command">Command name read</param>
         private void NextMove(string command)
         {
             string[] nextPoint = command.Split(' ');
@@ -91,6 +109,11 @@ namespace Mines
             }
         }
 
+        /// <summary>
+        /// Convert coordinates from striing to int
+        /// </summary>
+        /// <param name="firstCoord">Row</param>
+        /// <param name="secondCoord">Column</param>
         private void ParseCoordinates(string firstCoord, string secondCoord)
         {
             currentCell.Row = int.Parse(firstCoord);

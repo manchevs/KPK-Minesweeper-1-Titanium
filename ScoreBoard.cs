@@ -4,7 +4,10 @@ using System.Linq;
 
 namespace Mines
 {
-    class ScoreBoard
+    /// <summary>
+    /// Tops scores data of the players. Keeps information as List of Players
+    /// </summary>
+    public class ScoreBoard
     {
         private List<Player> players;
 
@@ -13,7 +16,7 @@ namespace Mines
             players = new List<Player>();
         }
 
-        internal int MinimalScoreInTop5()
+        public int MinimalScoreInTop5()
         {
             if (players.Count > 0)
             {
@@ -25,16 +28,27 @@ namespace Mines
             }
         }
 
-        internal void AddScore(int score)
+        public void AddScore(int score)
         {
             Console.Write("Please enter your name for the top scoreboard: ");
             string name = Console.ReadLine();
+            AddScores(name, score);
+        }
+
+        private void AddScores(string name, int score)
+        {
             players.Add(new Player(name, score));
             players.Sort(new Comparison<Player>((p1, p2) => p2.Score.CompareTo(p1.Score)));
             players = players.Take(5).ToList();
         }
 
-        internal void ShowScore()
+        // Created only for the tests
+        public void AddScore(int scores, string defaultName)
+        {
+            AddScores(defaultName, scores);
+        }
+
+        public void ShowScore()
         {
             Console.WriteLine("Scoreboard:");
             foreach (var p in players)
@@ -44,7 +58,7 @@ namespace Mines
             Console.WriteLine();
         }
 
-        internal int Count()
+        public int Count()
         {
             return players.Count();
         }
