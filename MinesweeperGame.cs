@@ -11,7 +11,6 @@ namespace Mines
         {
             MineField mineField = new MineField();
             
-
             while (true)
             {
                 if (shouldDisplayBoard)
