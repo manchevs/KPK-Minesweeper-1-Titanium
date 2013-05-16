@@ -3,3 +3,5 @@ C:\Academy\CSharp-4-KPK\18_TeamWork -\Project\KPK-Minesweeper-1-Titanium\bin\Deb
 C:\Academy\CSharp-4-KPK\18_TeamWork -\Project\KPK-Minesweeper-1-Titanium\obj\x86\Debug\Mines.csprojResolveAssemblyReference.cache
 C:\Academy\CSharp-4-KPK\18_TeamWork -\Project\KPK-Minesweeper-1-Titanium\obj\x86\Debug\Minesweeper.exe
 C:\Academy\CSharp-4-KPK\18_TeamWork -\Project\KPK-Minesweeper-1-Titanium\obj\x86\Debug\Minesweeper.pdb
+D:\Projects\Telerik Academy\HQC\HQC Projects\Teamwork  Titanium\HQC-Minesweeper-1-Titanium\KPK-Minesweeper-1-Titanium\obj\x86\Debug\Minesweeper.exe
+D:\Projects\Telerik Academy\HQC\HQC Projects\Teamwork  Titanium\HQC-Minesweeper-1-Titanium\KPK-Minesweeper-1-Titanium\obj\x86\Debug\Minesweeper.pdb
