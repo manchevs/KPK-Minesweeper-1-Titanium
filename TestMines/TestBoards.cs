@@ -74,12 +74,5 @@ namespace TestMines
                           boards.NumberOfNeighbourMines.GetLength(1) == TestBoards.ValidWidthValue);
         }
 
-        [TestMethod]
-        [Ignore]
-        public void TestBoardsForHeightAndWidthEqualToOne()
-        {
-            //Boards newBoards = new Boards(TestBoards.CriticalBorderValueOne, TestBoards.CriticalBorderValueOne);
-           
-        }
     }
 }

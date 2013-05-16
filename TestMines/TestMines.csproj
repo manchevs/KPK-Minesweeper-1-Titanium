@@ -55,6 +55,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestCommandParser.cs" />
     <Compile Include="TestScoreBoard.cs" />
+    <Compile Include="TestMineField.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Mines.csproj">
