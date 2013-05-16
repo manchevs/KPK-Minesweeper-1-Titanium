@@ -17,25 +17,25 @@ namespace TestMines
         public void TestConstructorForInvalidHeightAndWidth()
         {
             MineField mineField = new MineField(TestMineField.invalidWidthValue, TestMineField.invalidHeightValue);
-            
+
         }
 
         [TestMethod]
         public void TestIsInsideTheFieldWithInValidXAndY()
         {
-            MineField field=new MineField();
+            MineField field = new MineField();
             bool isInsideField = field.IsInsideTheField(TestMineField.invalidXValue, TestMineField.invalidYValue);
             Assert.IsFalse(isInsideField);
-                     
+
         }
 
         [TestMethod]
         public void MyTestMethod()
         {
             MineField field = new MineField();
-            field.RevealBlock(3,4);
+            field.RevealBlock(3, 4);
         }
 
-       
+
     }
 }

@@ -51,7 +51,7 @@ namespace Mines
             }
         }
 
-        private static string ReadCommand()
+        public static string ReadCommand()
         {
                 string command = Console.ReadLine();
                 command = command.Trim();
