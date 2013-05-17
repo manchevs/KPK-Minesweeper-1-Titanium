@@ -28,3 +28,11 @@ C:\Users\FeRt1\Desktop\MinesweeperTeamWorkProject\KPK-Minesweeper-1-Titanium\Tes
 C:\Users\FeRt1\Desktop\MinesweeperTeamWorkProject\KPK-Minesweeper-1-Titanium\TestMines\bin\Debug\Minesweeper.xml
 C:\Users\FeRt1\Desktop\MinesweeperTeamWorkProject\KPK-Minesweeper-1-Titanium\TestMines\bin\Debug\Minesweeper.dll
 C:\Users\Ani\Documents\GitHub\KPK-Minesweeper-1-Titanium\TestMines\bin\Debug\Minesweeper.xml
+D:\Projects\Telerik Academy\HQC\HQC Projects\Teamwork  Titanium\KPK-Minesweeper-1-Titanium\TestMines\bin\Debug\TestMines.dll
+D:\Projects\Telerik Academy\HQC\HQC Projects\Teamwork  Titanium\KPK-Minesweeper-1-Titanium\TestMines\bin\Debug\TestMines.pdb
+D:\Projects\Telerik Academy\HQC\HQC Projects\Teamwork  Titanium\KPK-Minesweeper-1-Titanium\TestMines\bin\Debug\Minesweeper.exe
+D:\Projects\Telerik Academy\HQC\HQC Projects\Teamwork  Titanium\KPK-Minesweeper-1-Titanium\TestMines\bin\Debug\Minesweeper.pdb
+D:\Projects\Telerik Academy\HQC\HQC Projects\Teamwork  Titanium\KPK-Minesweeper-1-Titanium\TestMines\bin\Debug\Minesweeper.xml
+D:\Projects\Telerik Academy\HQC\HQC Projects\Teamwork  Titanium\KPK-Minesweeper-1-Titanium\TestMines\obj\Debug\TestMines.csprojResolveAssemblyReference.cache
+D:\Projects\Telerik Academy\HQC\HQC Projects\Teamwork  Titanium\KPK-Minesweeper-1-Titanium\TestMines\obj\Debug\TestMines.dll
+D:\Projects\Telerik Academy\HQC\HQC Projects\Teamwork  Titanium\KPK-Minesweeper-1-Titanium\TestMines\obj\Debug\TestMines.pdb

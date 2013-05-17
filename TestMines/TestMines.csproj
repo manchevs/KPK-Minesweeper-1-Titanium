@@ -56,7 +56,8 @@
     <Compile Include="TestCommandParser.cs" />
     <Compile Include="TestScoreBoard.cs" />
     <Compile Include="TestMineField.cs" />
-    <Compile Include="TestMinesweeperGame.cs" />
+    <Compile Include="TestMinesweeperGameEngine.cs" />
+    <Compile Include="TestGameMessages.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Mines.csproj">

@@ -283,38 +283,38 @@
             Gets/Sets the score of the Player
             </summary>
         </member>
-        <member name="T:Mines.MinesweeperGame">
+        <member name="T:Mines.MinesweeperGameEngine">
             <summary>
             Class that holds the main logic of minesweeper game
             </summary>
         </member>
-        <member name="M:Mines.MinesweeperGame.Main">
+        <member name="M:Mines.MinesweeperGameEngine.Main">
             <summary>
-            The <see cref="M:Mines.MinesweeperGame.Main"/> method of the application.
+            The <see cref="M:Mines.MinesweeperGameEngine.Main"/> method of the application.
             Holds the main execution logic of the game
             </summary>
         </member>
-        <member name="M:Mines.MinesweeperGame.ExecuteCommand(Mines.MineField)">
+        <member name="M:Mines.MinesweeperGameEngine.ExecuteCommand(Mines.MineField)">
             <summary>
             Method that parses the user input and distributes the commands
             if they're correct
             </summary>
             <param name="mineField">The game field</param>
         </member>
-        <member name="M:Mines.MinesweeperGame.ReadCommand">
+        <member name="M:Mines.MinesweeperGameEngine.ReadCommand">
             <summary>
             Reads user input and return it as string.
             </summary>
             <returns>Returns users input</returns>
         </member>
-        <member name="M:Mines.MinesweeperGame.ExecuteRevealBlockCommand(Mines.MineField,Mines.Cell)">
+        <member name="M:Mines.MinesweeperGameEngine.ExecuteRevealBlockCommand(Mines.MineField,Mines.Cell)">
             <summary>
             Method that reveals cells onto the game field.
             </summary>
             <param name="mineField">The game field</param>
             <param name="currentCell">The cell to reveal</param>
         </member>
-        <member name="M:Mines.MinesweeperGame.ExecuteSpecialCommand(Mines.MineField,Mines.CommandParser)">
+        <member name="M:Mines.MinesweeperGameEngine.ExecuteSpecialCommand(Mines.MineField,Mines.CommandParser)">
             <summary>
             Mehtod that executes special game commands e.g. 
             top, exit, restart, flag etc.
@@ -322,7 +322,7 @@
             <param name="mineField">The game field</param>
             <param name="commandParser">Instance of the game command parser</param>
         </member>
-        <member name="M:Mines.MinesweeperGame.ExecuteFlagCommand(Mines.MineField,Mines.Cell)">
+        <member name="M:Mines.MinesweeperGameEngine.ExecuteFlagCommand(Mines.MineField,Mines.Cell)">
             <summary>
             Method that executes flag command on a cell of the gamefield
             </summary>

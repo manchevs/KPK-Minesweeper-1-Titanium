@@ -54,14 +54,14 @@
     <Compile Include="MineField.cs" />
     <Compile Include="CommandParser.cs" />
     <Compile Include="Player.cs" />
-    <Compile Include="MinesweeperGame.cs" />
+    <Compile Include="MinesweeperGameEngine.cs" />
     <Compile Include="ScoreBoard.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="ClassDiagram1.cd" />
+    <None Include="Minesweeper.cd" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

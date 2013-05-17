@@ -58,7 +58,7 @@ namespace Mines
         }
 
         // Created only for the tests
-        public void AddScore(int scores, string defaultName)
+        public void AddScore(string defaultName, int scores)
         {
             AddScores(defaultName, scores);
         }
