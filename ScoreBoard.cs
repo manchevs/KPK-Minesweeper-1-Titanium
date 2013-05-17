@@ -11,6 +11,10 @@ namespace Mines
     {
         private List<Player> players;
 
+        /// <summary>
+        /// Class constructor. Initialize a list that holds the players
+        /// results.
+        /// </summary>
         public ScoreBoard()
         {
             players = new List<Player>();
@@ -28,6 +32,11 @@ namespace Mines
             }
         }
 
+        /// <summary>
+        /// Takes the name of the player from <see cref="System.Console"/>
+        /// and adds it to the scoreboard
+        /// </summary>
+        /// <param name="score">The score of the player</param>
         public void AddScore(int score)
         {
             Console.Write("Please enter your name for the top scoreboard: ");
@@ -35,6 +44,12 @@ namespace Mines
             AddScores(name, score);
         }
 
+        /// <summary>
+        /// Takes the name of the player and his score
+        /// and adds it to the scoreboard
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="score"></param>
         private void AddScores(string name, int score)
         {
             players.Add(new Player(name, score));
@@ -48,6 +63,10 @@ namespace Mines
             AddScores(defaultName, scores);
         }
 
+        /// <summary>
+        /// Method that prints the scoreboard on the
+        /// <see cref="System.Console"/>
+        /// </summary>
         public void ShowScore()
         {
             Console.WriteLine("Scoreboard:");
@@ -58,6 +77,10 @@ namespace Mines
             Console.WriteLine();
         }
 
+        /// <summary>
+        /// Returns the count of the current players added to the scoreboard
+        /// </summary>
+        /// <returns>The count of the players on the scoreboard</returns>
         public int Count()
         {
             return players.Count();

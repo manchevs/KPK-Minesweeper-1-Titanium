@@ -2,11 +2,18 @@
 
 namespace Mines
 {
+    /// <summary>
+    /// Class that holds the main logic of minesweeper game
+    /// </summary>
     public class MinesweeperGame
     {
         private static readonly ScoreBoard scoreBoard = new ScoreBoard();
         private static bool shouldDisplayBoard = true;
 
+        /// <summary>
+        /// The <see cref="Main"/> method of the application.
+        /// Holds the main execution logic of the game
+        /// </summary>
         public static void Main()
         {
             MineField mineField = new MineField();
@@ -27,6 +34,11 @@ namespace Mines
             }
         }
 
+        /// <summary>
+        /// Method that parses the user input and distributes the commands
+        /// if they're correct
+        /// </summary>
+        /// <param name="mineField">The game field</param>
         private static void ExecuteCommand(MineField mineField)
         {
             CommandParser commandParser = new CommandParser();
@@ -51,6 +63,10 @@ namespace Mines
             }
         }
 
+        /// <summary>
+        /// Reads user input and return it as string.
+        /// </summary>
+        /// <returns>Returns users input</returns>
         public static string ReadCommand()
         {
                 string command = Console.ReadLine();
@@ -59,6 +75,11 @@ namespace Mines
                 return command;
         }
 
+        /// <summary>
+        /// Method that reveals cells onto the game field.
+        /// </summary>
+        /// <param name="mineField">The game field</param>
+        /// <param name="currentCell">The cell to reveal</param>
         private static void ExecuteRevealBlockCommand(MineField mineField, Cell currentCell)
         {
             int row = currentCell.Row;
@@ -93,6 +114,12 @@ namespace Mines
             }
         }
 
+        /// <summary>
+        /// Mehtod that executes special game commands e.g. 
+        /// top, exit, restart, flag etc.
+        /// </summary>
+        /// <param name="mineField">The game field</param>
+        /// <param name="commandParser">Instance of the game command parser</param>
         private static void ExecuteSpecialCommand(MineField mineField, CommandParser commandParser)
         {
             if (commandParser.Command == "top")
@@ -120,6 +147,11 @@ namespace Mines
             }
         }
 
+        /// <summary>
+        /// Method that executes flag command on a cell of the gamefield
+        /// </summary>
+        /// <param name="mineField">The game field</param>
+        /// <param name="currentCell">The cell to flag.</param>
         private static void ExecuteFlagCommand(MineField mineField, Cell currentCell)
         {
             int row = currentCell.Row;

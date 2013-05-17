@@ -5,6 +5,7 @@ namespace Mines
 {
     /// <summary>
     /// Players data - Name, Scores
+    /// Internal class used from <see cref="ScoreBoard"/>
     /// </summary>
     public class Player
     {
@@ -22,6 +23,9 @@ namespace Mines
             this.Score = score;
         }
 
+        /// <summary>
+        /// Gets/Sets the name of the Player
+        /// </summary>
         public string Name
         {
             get { return this.name; }
@@ -43,6 +47,9 @@ namespace Mines
             }
         }
 
+        /// <summary>
+        /// Gets/Sets the score of the Player
+        /// </summary>
         public int Score
         {
             get { return this.score; }
