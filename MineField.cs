@@ -91,8 +91,8 @@ namespace Mines
         /// <returns>Returns true if the corresponding cell is inside the game field</returns>
         public bool IsInsideTheField(int x, int y)
         {
-            bool isInsideHorizontaly = 0 <= x && x < this.height;
-            bool isInsideVerticaly = 0 <= y && y < this.width;
+            bool isInsideHorizontaly = x >= 0 && x < this.height;
+            bool isInsideVerticaly = y >= 0 && y < this.width;
             return isInsideHorizontaly && isInsideVerticaly;
         }
 

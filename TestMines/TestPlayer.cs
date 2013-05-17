@@ -2,44 +2,44 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Mines;
 
-namespace MinesUnitTests
+namespace TestMines
 {
     [TestClass]
     public class TestPlayer
     {
 
-        private const string validPlayerName = "pesho";
-        private const int minPlayerScore = 0;
-        private const int validPlayerScore = 10;
-        private const int invalidPlayerScore = -1;
-        private const string emptyPlayerName = "unsign player";
+        private const string ValidPlayerName = "pesho";
+        private const int MinPlayerScore = 0;
+        private const int ValidPlayerScore = 10;
+        private const int InvalidPlayerScore = -1;
+        private const string EmptyPlayerName = "unsign player";
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
         public void TestNameInContstructorForNull()
         {
-            new Player(null, TestPlayer.validPlayerScore);
+            new Player(null, TestPlayer.ValidPlayerScore);
         }
 
         [TestMethod]
         public void TestNameInConstructorForEmptyString()
         {
-            Player player = new Player("", TestPlayer.validPlayerScore);
-            Assert.AreEqual(TestPlayer.emptyPlayerName, player.Name);
+            Player player = new Player("", TestPlayer.ValidPlayerScore);
+            Assert.AreEqual(TestPlayer.EmptyPlayerName, player.Name);
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
         public void TestScoreInConstructorForInvalidValue()
         {
-            new Player(TestPlayer.validPlayerName, TestPlayer.invalidPlayerScore);
+            new Player(TestPlayer.ValidPlayerName, TestPlayer.InvalidPlayerScore);
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
         public void TestNameInPropertySetForNull()
         {
-            Player player = new Player(TestPlayer.validPlayerName, TestPlayer.validPlayerScore);
+            Player player = new Player(TestPlayer.ValidPlayerName, TestPlayer.ValidPlayerScore);
 
             player.Name = null;
         }
@@ -47,24 +47,24 @@ namespace MinesUnitTests
         [TestMethod]
         public void TestNameInPropertySetForEmptyString()
         {
-            Player player = new Player(TestPlayer.validPlayerName, TestPlayer.validPlayerScore);
+            Player player = new Player(TestPlayer.ValidPlayerName, TestPlayer.ValidPlayerScore);
             player.Name = "";
-            Assert.AreEqual(TestPlayer.emptyPlayerName, player.Name);
+            Assert.AreEqual(TestPlayer.EmptyPlayerName, player.Name);
 
         }
 
         [TestMethod]
         public void TestNameInPropertyGetForCorrectGettedValue()
         {
-            Player player = new Player(TestPlayer.validPlayerName, TestPlayer.validPlayerScore);
+            Player player = new Player(TestPlayer.ValidPlayerName, TestPlayer.ValidPlayerScore);
 
-            Assert.AreEqual(TestPlayer.validPlayerName, player.Name, "Getter for name do not work correct");
+            Assert.AreEqual(TestPlayer.ValidPlayerName, player.Name, "Getter for name do not work correct");
         }
 
         [TestMethod]
         public void TestNamePropertyForCorrectWork()
         {
-            Player player = new Player(TestPlayer.validPlayerName, TestPlayer.validPlayerScore);
+            Player player = new Player(TestPlayer.ValidPlayerName, TestPlayer.ValidPlayerScore);
 
             player.Name = "newName";
 
@@ -75,22 +75,22 @@ namespace MinesUnitTests
         [ExpectedException(typeof(ArgumentException))]
         public void TestScoreInPropertyForInvalidValue()
         {
-            Player player = new Player(TestPlayer.validPlayerName, TestPlayer.validPlayerScore);
+            Player player = new Player(TestPlayer.ValidPlayerName, TestPlayer.ValidPlayerScore);
 
-            player.Score = TestPlayer.invalidPlayerScore;
+            player.Score = TestPlayer.InvalidPlayerScore;
         }
 
         [TestMethod]
         public void TestScoreWithZeroPoints()
         {
-            Player player = new Player(TestPlayer.validPlayerName, TestPlayer.minPlayerScore);
+            Player player = new Player(TestPlayer.ValidPlayerName, TestPlayer.MinPlayerScore);
             Assert.AreEqual(0, player.Score);
         }
 
         [TestMethod]
         public void TestNameWithWhiteSpaces()
         {
-            Player player = new Player(new string(' ', 10), TestPlayer.validPlayerScore);
+            Player player = new Player(new string(' ', 10), TestPlayer.ValidPlayerScore);
 
             Assert.AreEqual(new string(' ', 10), player.Name);
 

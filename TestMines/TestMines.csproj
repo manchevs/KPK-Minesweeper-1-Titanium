@@ -51,8 +51,12 @@
   </Choose>
   <ItemGroup>
     <Compile Include="TestBoards.cs" />
-    <Compile Include="TestPerson.cs" />
+    <Compile Include="TestPlayer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestCommandParser.cs" />
+    <Compile Include="TestScoreBoard.cs" />
+    <Compile Include="TestMineField.cs" />
+    <Compile Include="TestMinesweeperGame.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Mines.csproj">
