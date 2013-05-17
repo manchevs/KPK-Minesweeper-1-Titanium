@@ -26,6 +26,9 @@ namespace Mines
             this.numberOfNeighbourMines = new int[height, width];
         }
 
+        /// <summary>
+        /// Gets the matrix that holds the visual state of the game field
+        /// </summary>
         public char[,] Visible
         {
             get
@@ -34,6 +37,9 @@ namespace Mines
             }
         }
 
+        /// <summary>
+        /// Gets the matrix that holds the mines on the game field
+        /// </summary>
         public bool[,] HasMine
         {
             get
@@ -42,6 +48,9 @@ namespace Mines
             }
         }
 
+        /// <summary>
+        /// Gets the matrix that holds the information about the visibility state of the game field
+        /// </summary>
         public bool[,] IsShown
         {
             get
@@ -50,6 +59,9 @@ namespace Mines
             }
         }
 
+        /// <summary>
+        /// Gets the matrix that holds the information about the number of neighbour mines of each cell
+        /// </summary>
         public int[,] NumberOfNeighbourMines
         {
             get

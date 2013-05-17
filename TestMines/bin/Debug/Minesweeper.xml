@@ -1,0 +1,371 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Minesweeper</name>
+    </assembly>
+    <members>
+        <member name="T:Mines.Boards">
+            <summary>
+            Class for keeping information of each MineField Cell with the status
+            (is visibla, has mine, neighbours with mine, is shown.)
+            </summary>
+        </member>
+        <member name="P:Mines.Boards.Visible">
+            <summary>
+            Gets the matrix that holds the visual state of the game field
+            </summary>
+        </member>
+        <member name="P:Mines.Boards.HasMine">
+            <summary>
+            Gets the matrix that holds the mines on the game field
+            </summary>
+        </member>
+        <member name="P:Mines.Boards.IsShown">
+            <summary>
+            Gets the matrix that holds the information about the visibility state of the game field
+            </summary>
+        </member>
+        <member name="P:Mines.Boards.NumberOfNeighbourMines">
+            <summary>
+            Gets the matrix that holds the information about the number of neighbour mines of each cell
+            </summary>
+        </member>
+        <member name="T:Mines.Cell">
+            <summary>
+            Structure class for keeping current game field cell coordinates
+            </summary>
+        </member>
+        <member name="T:Mines.GameMessages">
+            <summary>
+            Static class containing game messages that are visualized 
+            on the <see cref="T:System.Console"/> during the game process.
+            </summary>
+        </member>
+        <member name="M:Mines.GameMessages.StartGame">
+            <summary>
+            Method that prints the welcome message of the game
+            </summary>
+        </member>
+        <member name="M:Mines.GameMessages.IlligalCommand">
+            <summary>
+            Method that prints on <see cref="T:System.Console"/> the Illigal command message
+            </summary>
+        </member>
+        <member name="M:Mines.GameMessages.IlligalMove">
+            <summary>
+            Method that prints on <see cref="T:System.Console"/> the Illigal move message
+            </summary>
+        </member>
+        <member name="M:Mines.GameMessages.Entry">
+            <summary>
+            Method that prints on <see cref="T:System.Console"/> 
+            the entry message
+            </summary>
+        </member>
+        <member name="M:Mines.GameMessages.EndGame(System.Int32)">
+            <summary>
+            Method that prints on <see cref="T:System.Console"/> 
+            the message after the game is over with the correct amount of mines
+            openned during the game.
+            </summary>
+            <param name="revealedCells">The number of mines the player has opened during the game</param>
+        </member>
+        <member name="M:Mines.GameMessages.Exit">
+            <summary>
+            Method that prints on <see cref="T:System.Console"/> the message
+            which apear after the exit command is executed
+            </summary>
+        </member>
+        <member name="M:Mines.GameMessages.DrawGameField(System.String)">
+            <summary>
+            Method that prints on <see cref="T:System.Console"/> the visual state of the gamefield
+            </summary>
+            <param name="gameField"></param>
+        </member>
+        <member name="T:Mines.MineField">
+            <summary>
+            Class that represents a mine field. It tracks the current state of the cells
+            onto the board and actualize all changes made to the field.
+            </summary>
+        </member>
+        <member name="F:Mines.MineField.height">
+            <summary>
+            The height of the mine field.
+            </summary>
+        </member>
+        <member name="F:Mines.MineField.width">
+            <summary>
+            The width of the mine field.
+            </summary>
+        </member>
+        <member name="F:Mines.MineField.numberOfMines">
+            <summary>
+            The number of the mines placed on the field.
+            </summary>
+        </member>
+        <member name="F:Mines.MineField.boards">
+            <summary>
+            The arrays with track the changes onto the mine field.
+            </summary>
+        </member>
+        <member name="F:Mines.MineField.revealedCellsCounter">
+            <summary>
+            The count of the revealed cells onto the mine field.
+            </summary>
+        </member>
+        <member name="M:Mines.MineField.#ctor(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Mines.MineField"/> class
+            which represents minesweeper game field.
+            </summary>
+            <param name="width">The width of the game field</param>
+            <param name="height">The height of the game field</param>
+            <param name="numberOfMines">The number of the mines that should be put on the field</param>
+        </member>
+        <member name="M:Mines.MineField.IsInsideTheField(System.Int32,System.Int32)">
+            <summary>
+            Method that checks if the cell on the corresponding coordinates
+            is inside the game field. Uses <see cref="F:Mines.MineField.width"/> and <see cref="F:Mines.MineField.height"/>
+            to define the game field dimensions.
+            </summary>
+            <param name="row">The X coordinate of the cell</param>
+            <param name="col">The Y coordinate of the cell</param>
+            <returns>Returns true if the corresponding cell is inside the game field</returns>
+        </member>
+        <member name="M:Mines.MineField.IsAlreadyShown(System.Int32,System.Int32)">
+            <summary>
+            Method that checks if the cell on the corresponding coordinates
+            is already visible. Uses <see cref="P:Mines.Boards.IsShown"/> array to track the results.
+            </summary>
+            <param name="row">The X coordinate of the cell</param>
+            <param name="col">The Y coordinate of the cell</param>
+            <returns>Returns true if the corresponding cell is already shown</returns>
+        </member>
+        <member name="M:Mines.MineField.IsMine(System.Int32,System.Int32)">
+            <summary>
+            Method that checks if the cell on the corresponding coordinates
+            is a mine field. Uses <see cref="P:Mines.Boards.HasMine"/> array to track the results.
+            </summary>
+            <param name="row">The X coordinate of the cell</param>
+            <param name="col">The Y coordinate of the cell</param>
+            <returns>Returns true if the corresponding cell is a mine field</returns>
+        </member>
+        <member name="M:Mines.MineField.InitializeMines">
+            <summary>
+            Method that generate random X and Y coordinates and places a mine on the
+            corresponding cell using <see cref="M:Mines.MineField.PlaceMine(System.Int32,System.Int32)"/> method.
+            </summary>
+        </member>
+        <member name="M:Mines.MineField.PlaceMine(System.Int32,System.Int32)">
+            <summary>
+            Method that places a mine into a cell using <see cref="P:Mines.Boards.HasMine"/> array
+            to mark the results.
+            Actualizing the numbers of all neighbour cells with <see cref="M:Mines.MineField.ActualizeNeighbourMinesNumber(System.Int32,System.Int32)"/>
+            </summary>
+            <param name="row">The X coordinate of the cell</param>
+            <param name="col">The Y coordinate of the cell</param>
+        </member>
+        <member name="M:Mines.MineField.ActualizeNeighbourMinesNumber(System.Int32,System.Int32)">
+            <summary>
+            Method that counts the number of neighbour mines number.
+            The result is written in <see cref="P:Mines.Boards.NumberOfNeighbourMines"/> Array.
+            </summary>
+            <param name="row">The X coordinate of the cell</param>
+            <param name="col">The Y coordinate of the cell</param>
+        </member>
+        <member name="M:Mines.MineField.InitializeBoardForDisplay">
+            <summary>
+            Replaces all cell's chars in <see cref="P:Mines.Boards.Visible"/> array with '?' symbol 
+            </summary>
+        </member>
+        <member name="M:Mines.MineField.RevealBlock(System.Int32,System.Int32)">
+            <summary>
+            Method that reveals a cell on the game field by replacing it's char with a number
+            corresponding to the mines in it's neighbour cells.
+            If the number of the neighbour mines is 0 the method calls itself recursivly and
+            reveals all neighbour cells.
+            </summary>
+            <param name="row">The X coordinate of the cell</param>
+            <param name="col">The Y coordinate of the cell</param>
+        </member>
+        <member name="M:Mines.MineField.AddRemoveFlag(System.Int32,System.Int32)">
+            <summary>
+            Method that adds or removes a flag from a cell.
+            </summary>
+            <param name="row">The X coordinate of the cell</param>
+            <param name="col">The Y coordinate of the cell</param>
+        </member>
+        <member name="M:Mines.MineField.RevealAllMines">
+            <summary>
+            Method that reveal all mines on the game field after the game has ended.
+            Replaces all unrevealed cells with '-' and visualize the mines as '*'
+            </summary>
+        </member>
+        <member name="M:Mines.MineField.ToString">
+            <summary>
+            Method that returns the minesweeper mine field with all currently reviewed mines
+            </summary>
+            <example>
+            This example shows how to use <see cref="M:Mines.MineField.ToString"/> method.
+            <code>
+                MineField mineField = new MineField();
+                Console.WriteLine(mineField.ToString());
+            </code>
+            </example>
+            <returns>String containing the current state of the mine field</returns>
+        </member>
+        <member name="P:Mines.MineField.RevealedCellsCounter">
+            <summary>
+            Gets the number of revealed cells on the game field.
+            </summary>
+        </member>
+        <member name="T:Mines.CommandParser">
+            <summary>
+            Check the command type and parse the next move coordinates
+            </summary>
+        </member>
+        <member name="M:Mines.CommandParser.TryParseCommand(System.String)">
+            <summary>
+            Check if it is a regular command
+            </summary>
+            <param name="command">Command name read</param>
+            <returns>True if regular command</returns>
+        </member>
+        <member name="M:Mines.CommandParser.IsSpecialCommand">
+            <summary>
+            Check if it is a special command for top scores, end game, etc.
+            </summary>
+            <returns>True if special command</returns>
+        </member>
+        <member name="M:Mines.CommandParser.NextMove(System.String)">
+            <summary>
+            Parse coordinats for the next move
+            </summary>
+            <param name="command">Command name read</param>
+        </member>
+        <member name="M:Mines.CommandParser.ParseCoordinates(System.String,System.String)">
+            <summary>
+            Convert coordinates from striing to int
+            </summary>
+            <param name="firstCoord">Row</param>
+            <param name="secondCoord">Column</param>
+        </member>
+        <member name="P:Mines.CommandParser.Command">
+            <summary>
+            Keeps the commant name
+            </summary>
+        </member>
+        <member name="P:Mines.CommandParser.CurrentCell">
+            <summary>
+            Keeps the current cell coordinats
+            </summary>
+        </member>
+        <member name="T:Mines.Player">
+            <summary>
+            Players data - Name, Scores
+            Internal class used from <see cref="T:Mines.ScoreBoard"/>
+            </summary>
+        </member>
+        <member name="M:Mines.Player.#ctor(System.String,System.Int32)">
+            <summary>
+            Initialize the player
+            </summary>
+            <param name="name">Payer's name - string</param>
+            <param name="score">Player's score - integer </param>
+        </member>
+        <member name="P:Mines.Player.Name">
+            <summary>
+            Gets/Sets the name of the Player
+            </summary>
+        </member>
+        <member name="P:Mines.Player.Score">
+            <summary>
+            Gets/Sets the score of the Player
+            </summary>
+        </member>
+        <member name="T:Mines.MinesweeperGameEngine">
+            <summary>
+            Class that holds the main logic of minesweeper game
+            </summary>
+        </member>
+        <member name="M:Mines.MinesweeperGameEngine.Main">
+            <summary>
+            The <see cref="M:Mines.MinesweeperGameEngine.Main"/> method of the application.
+            Holds the main execution logic of the game
+            </summary>
+        </member>
+        <member name="M:Mines.MinesweeperGameEngine.ExecuteCommand(Mines.MineField)">
+            <summary>
+            Method that parses the user input and distributes the commands
+            if they're correct
+            </summary>
+            <param name="mineField">The game field</param>
+        </member>
+        <member name="M:Mines.MinesweeperGameEngine.ReadCommand">
+            <summary>
+            Reads user input and return it as string.
+            </summary>
+            <returns>Returns users input</returns>
+        </member>
+        <member name="M:Mines.MinesweeperGameEngine.ExecuteRevealBlockCommand(Mines.MineField,Mines.Cell)">
+            <summary>
+            Method that reveals cells onto the game field.
+            </summary>
+            <param name="mineField">The game field</param>
+            <param name="currentCell">The cell to reveal</param>
+        </member>
+        <member name="M:Mines.MinesweeperGameEngine.ExecuteSpecialCommand(Mines.MineField,Mines.CommandParser)">
+            <summary>
+            Mehtod that executes special game commands e.g. 
+            top, exit, restart, flag etc.
+            </summary>
+            <param name="mineField">The game field</param>
+            <param name="commandParser">Instance of the game command parser</param>
+        </member>
+        <member name="M:Mines.MinesweeperGameEngine.ExecuteFlagCommand(Mines.MineField,Mines.Cell)">
+            <summary>
+            Method that executes flag command on a cell of the gamefield
+            </summary>
+            <param name="mineField">The game field</param>
+            <param name="currentCell">The cell to flag.</param>
+        </member>
+        <member name="T:Mines.ScoreBoard">
+            <summary>
+            Tops scores data of the players. Keeps information as List of Players
+            </summary>
+        </member>
+        <member name="M:Mines.ScoreBoard.#ctor">
+            <summary>
+            Class constructor. Initialize a list that holds the players
+            results.
+            </summary>
+        </member>
+        <member name="M:Mines.ScoreBoard.AddScore(System.Int32)">
+            <summary>
+            Takes the name of the player from <see cref="T:System.Console"/>
+            and adds it to the scoreboard
+            </summary>
+            <param name="score">The score of the player</param>
+        </member>
+        <member name="M:Mines.ScoreBoard.AddScores(System.String,System.Int32)">
+            <summary>
+            Takes the name of the player and his score
+            and adds it to the scoreboard
+            </summary>
+            <param name="name"></param>
+            <param name="score"></param>
+        </member>
+        <member name="M:Mines.ScoreBoard.ShowScore">
+            <summary>
+            Method that prints the scoreboard on the
+            <see cref="T:System.Console"/>
+            </summary>
+        </member>
+        <member name="M:Mines.ScoreBoard.Count">
+            <summary>
+            Returns the count of the current players added to the scoreboard
+            </summary>
+            <returns>The count of the players on the scoreboard</returns>
+        </member>
+    </members>
+</doc>

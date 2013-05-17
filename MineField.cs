@@ -60,7 +60,6 @@ namespace Mines
             this.numberOfMines = numberOfMines;
             this.boards = new Boards(height, width);
             this.expectedMinesLeft = numberOfMines;
-
             this.InitializeBoardForDisplay();
             this.InitializeMines();
         }
@@ -74,7 +73,6 @@ namespace Mines
             {
                 return this.revealedCellsCounter;
             }
-
             private set
             {
                 this.revealedCellsCounter = value;
@@ -86,13 +84,13 @@ namespace Mines
         /// is inside the game field. Uses <see cref="width"/> and <see cref="height"/>
         /// to define the game field dimensions.
         /// </summary>
-        /// <param name="x">The X coordinate of the cell</param>
-        /// <param name="y">The Y coordinate of the cell</param>
+        /// <param name="row">The X coordinate of the cell</param>
+        /// <param name="col">The Y coordinate of the cell</param>
         /// <returns>Returns true if the corresponding cell is inside the game field</returns>
-        public bool IsInsideTheField(int x, int y)
+        public bool IsInsideTheField(int row, int col)
         {
-            bool isInsideHorizontaly = x >= 0 && x < this.height;
-            bool isInsideVerticaly = y >= 0 && y < this.width;
+            bool isInsideHorizontaly = row >= 0 && row < this.height;
+            bool isInsideVerticaly = col >= 0 && col < this.width;
             return isInsideHorizontaly && isInsideVerticaly;
         }
 
@@ -100,24 +98,40 @@ namespace Mines
         /// Method that checks if the cell on the corresponding coordinates
         /// is already visible. Uses <see cref="Boards.IsShown"/> array to track the results.
         /// </summary>
-        /// <param name="x">The X coordinate of the cell</param>
-        /// <param name="y">The Y coordinate of the cell</param>
+        /// <param name="row">The X coordinate of the cell</param>
+        /// <param name="col">The Y coordinate of the cell</param>
         /// <returns>Returns true if the corresponding cell is already shown</returns>
-        public bool IsAlreadyShown(int x, int y)
+        public bool IsAlreadyShown(int row, int col)
         {
-            return this.boards.IsShown[x, y];
+            if (row > this.height || col > this.width)
+            {
+                throw new ArgumentException("Row must be less than 5 and Col must be less than 10");
+            }
+            if (row < 0 || col < 0)
+            {
+                throw new ArgumentException("Row and Col must be positive number");
+            }
+            return this.boards.IsShown[row, col];
         }
 
         /// <summary>
         /// Method that checks if the cell on the corresponding coordinates
         /// is a mine field. Uses <see cref="Boards.HasMine"/> array to track the results.
         /// </summary>
-        /// <param name="x">The X coordinate of the cell</param>
-        /// <param name="y">The Y coordinate of the cell</param>
+        /// <param name="row">The X coordinate of the cell</param>
+        /// <param name="col">The Y coordinate of the cell</param>
         /// <returns>Returns true if the corresponding cell is a mine field</returns>
-        public bool IsMine(int x, int y)
+        public bool IsMine(int row, int col)
         {
-            return this.boards.HasMine[x, y];
+            if (row > this.height || col > this.width)
+            {
+                throw new ArgumentException("Row must be less than 5 and Col must be less than 10");
+            }
+            if (row < 0 || col < 0)
+            {
+                throw new ArgumentException("Row and Col must be positive number");
+            }
+            return this.boards.HasMine[row, col];
         }
 
         /// <summary>
@@ -147,30 +161,30 @@ namespace Mines
         /// to mark the results.
         /// Actualizing the numbers of all neighbour cells with <see cref="ActualizeNeighbourMinesNumber"/>
         /// </summary>
-        /// <param name="x">The X coordinate of the cell</param>
-        /// <param name="y">The Y coordinate of the cell</param>
-        private void PlaceMine(int x, int y)
+        /// <param name="row">The X coordinate of the cell</param>
+        /// <param name="col">The Y coordinate of the cell</param>
+        private void PlaceMine(int row, int col)
         {
-            this.boards.HasMine[x, y] = true;
-            this.ActualizeNeighbourMinesNumber(x, y);
+            this.boards.HasMine[row, col] = true;
+            this.ActualizeNeighbourMinesNumber(row, col);
         }
 
         /// <summary>
         /// Method that counts the number of neighbour mines number.
         /// The result is written in <see cref="Boards.NumberOfNeighbourMines"/> Array.
         /// </summary>
-        /// <param name="x">The X coordinate of the cell</param>
-        /// <param name="y">The Y coordinate of the cell</param>
-        private void ActualizeNeighbourMinesNumber(int x, int y)
+        /// <param name="row">The X coordinate of the cell</param>
+        /// <param name="col">The Y coordinate of the cell</param>
+        private void ActualizeNeighbourMinesNumber(int row, int col)
         {
             for (int i = -1; i <= 1; i++)
             {
                 for (int j = -1; j <= 1; j++)
                 {
                     bool isMainCell = (i == 0) && (j == 0);
-                    if (!isMainCell && this.IsInsideTheField(x + i, y + j))
+                    if (!isMainCell && this.IsInsideTheField(row + i, col + j))
                     {
-                        this.boards.NumberOfNeighbourMines[x + i, y + j]++;
+                        this.boards.NumberOfNeighbourMines[row + i, col + j]++;
                     }
                 }
             }
@@ -196,33 +210,42 @@ namespace Mines
         /// If the number of the neighbour mines is 0 the method calls itself recursivly and
         /// reveals all neighbour cells.
         /// </summary>
-        /// <param name="x">The X coordinate of the cell</param>
-        /// <param name="y">The Y coordinate of the cell</param>
-        public void RevealBlock(int x, int y)
+        /// <param name="row">The X coordinate of the cell</param>
+        /// <param name="col">The Y coordinate of the cell</param>
+        public void RevealBlock(int row, int col)
         {
-            char neighbourCells = Convert.ToChar(this.boards.NumberOfNeighbourMines[x, y].ToString());
+            if (row > this.height || col > this.width)
+            {
+                throw new ArgumentException("Row must be less than 5 and Col must be less than 10");
+            }
+            if (row < 0 || col < 0)
+            {
+                throw new ArgumentException("Row and Col must be positive number");
+            }
+
+            char neighbourCells = Convert.ToChar(this.boards.NumberOfNeighbourMines[row, col].ToString());
             if (neighbourCells == '0')
             {
-                this.boards.Visible[x, y] = ' ';
+                this.boards.Visible[row, col] = ' ';
             }
             else
             {
-                this.boards.Visible[x, y] = neighbourCells;
+                this.boards.Visible[row, col] = neighbourCells;
             }
 
             this.RevealedCellsCounter++;
-            this.boards.IsShown[x, y] = true;
-            if (this.boards.Visible[x, y] == ' ')
+            this.boards.IsShown[row, col] = true;
+            if (this.boards.Visible[row, col] == ' ')
             {
-                for (int row = -1; row <= 1; row++)
+                for (int heighbourRow = -1; heighbourRow <= 1; heighbourRow++)
                 {
-                    for (int col = -1; col <= 1; col++)
+                    for (int neighbourCol = -1; neighbourCol <= 1; neighbourCol++)
                     {
-                        int newX = x + row;
-                        int newY = y + col;
-                        if (this.IsInsideTheField(newX, newY) && this.boards.IsShown[newX, newY] == false)
+                        int newRow = row + heighbourRow;
+                        int newCol = col + neighbourCol;
+                        if (this.IsInsideTheField(newRow, newCol) && this.boards.IsShown[newRow, newCol] == false)
                         {
-                            this.RevealBlock(newX, newY);
+                            this.RevealBlock(newRow, newCol);
                         }
                     }
                 }
@@ -232,18 +255,18 @@ namespace Mines
         /// <summary>
         /// Method that adds or removes a flag from a cell.
         /// </summary>
-        /// <param name="x">The X coordinate of the cell</param>
-        /// <param name="y">The Y coordinate of the cell</param>
-        public void AddRemoveFlag(int x, int y)
+        /// <param name="row">The X coordinate of the cell</param>
+        /// <param name="col">The Y coordinate of the cell</param>
+        public void AddRemoveFlag(int row, int col)
         {
-            if (this.boards.Visible[x, y] == '?')
+            if (this.boards.Visible[row, col] == '?')
             {
-                this.boards.Visible[x, y] = '!';
+                this.boards.Visible[row, col] = '!';
                 this.expectedMinesLeft--;
             }
             else
             {
-                this.boards.Visible[x, y] = '?';
+                this.boards.Visible[row, col] = '?';
                 this.expectedMinesLeft++;
             }
         }
