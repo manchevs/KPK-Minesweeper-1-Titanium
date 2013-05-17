@@ -60,7 +60,6 @@ namespace Mines
             this.numberOfMines = numberOfMines;
             this.boards = new Boards(height, width);
             this.expectedMinesLeft = numberOfMines;
-
             this.InitializeBoardForDisplay();
             this.InitializeMines();
         }
@@ -74,7 +73,6 @@ namespace Mines
             {
                 return this.revealedCellsCounter;
             }
-
             private set
             {
                 this.revealedCellsCounter = value;
