@@ -19,3 +19,4 @@ C:\Users\FeRt1\Desktop\MinesweeperTeamWorkProject\KPK-Minesweeper-1-Titanium\obj
 C:\Users\FeRt1\Desktop\MinesweeperTeamWorkProject\KPK-Minesweeper-1-Titanium\bin\Debug\Minesweeper.XML
 C:\Users\FeRt1\Desktop\MinesweeperTeamWorkProject\KPK-Minesweeper-1-Titanium\bin\Debug\Minesweeper.exe
 C:\Users\FeRt1\Desktop\MinesweeperTeamWorkProject\KPK-Minesweeper-1-Titanium\obj\x86\Debug\Minesweeper.exe
+C:\Users\Ani\Documents\GitHub\KPK-Minesweeper-1-Titanium\bin\Debug\Minesweeper.XML

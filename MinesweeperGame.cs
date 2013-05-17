@@ -167,6 +167,5 @@ namespace Mines
                 shouldDisplayBoard = false;
             }
         }
-
     }
 }
